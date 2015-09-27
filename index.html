@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Worksheet</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<style type="text/css">
+		
+		html {
+			font-family: "Arial";
+		}
+		
+		#options { 
+			border:2px solid #668;
+			background-color:#CCC;
+			padding:0.7em;
+			margin-bottom:0.5em;
+		}
+		
+		#options .title {
+			font-weight: bold;
+		}
+		
+		#options p {
+			font-size: 0.8em; 
+			margin:0.5em 0 0 0;
+		}
+		
+		#options input {
+			width: 2.5em;
+			text-align:right;
+		}
+		
+		#worksheet { display:none;}
+				
+		#worksheet table {
+			width:100%;
+			border-collapse: collapse;
+			border:1px solid #CCC;
+		}
+		
+		#worksheet table td {
+			border:1px solid #CCC;
+			padding:0.8em 2.0em 0.7em 0.9em;
+			width:20%;
+			font-size:1.1em;
+			white-space: nowrap;
+		}
+		</style>
+
+		<style type="text/css" media="print">
+		#options { display:none; }
+		</style>
+		
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="worksheet.js"></script>
+	</head>
+	<body>
+		<div id="options">
+			<span class="title">Worksheet Generator:</span>
+			<label for="min">Min</label> <input name="min" id="min" value="1">
+			<label for="max">Max</label> <input name="max" id="max" value="12">
+			<button onclick="generate()">Generate</button>
+			
+			<br>
+			
+			<p>Generates a printable maths worksheet with 100 mixed-operation problems, no repeats.</p>			
+		</div>
+		
+		<div id="worksheet"></div>
+	</body>
+</html>
