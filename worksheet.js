@@ -1,3 +1,8 @@
+$(function() {
+	// Generate a worksheet on load.
+	generate();
+})
+
 function getRandomInt(min, max) {
 	// Returns an int between min and max inclusive of both.
 	return Math.floor(Math.random() * (max - min + 1)) + min;
