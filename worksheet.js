@@ -10,6 +10,9 @@ function getRandomInt(min, max) {
 
 function getEquation(min, max, used) {
 	// Returns a string containing an equation we haven't seen before.
+		
+	// If we'll run out of options, allow repeats.
+	var repeats_ok = ((max - min) * (max - min) * 4 < 100);
 	
 	var equation = "";
 	var already = true;
@@ -39,7 +42,7 @@ function getEquation(min, max, used) {
 				break;
 		}
 				
-		already = (used[op][equation] == 1);
+		already = (repeats_ok) ? false : (used[op][equation] == 1);
 		used[op][equation] = 1;		
 		//console.log(equation + " - " + already);
 	}
@@ -47,10 +50,27 @@ function getEquation(min, max, used) {
 	return equation + " =";
 }
 
+function message(msg) {
+	$("#messages").html("<p>" + msg + "</p>");
+	$("#messages").show();
+}
+
 function generate() {
 	$("#worksheet").hide();
+	$("#messages").hide();
+	
 	var min = $("#min").val() * 1;
 	var max = $("#max").val() * 1;
+
+	if (!$.isNumeric(min) || min < 1) {
+		message("Minimum value must be a number >= 1"); 
+		return false; 
+	}
+	
+	if (!$.isNumeric(max) || max <= min) { 
+		message("Maximum value must be a number larger than the minimum"); 
+		return false; 
+	}
 	
 	var cols = 5;
 	var rows = 20;
@@ -68,6 +88,6 @@ function generate() {
 	}
 	
 	sheet += "</table>";
-	$("#worksheet").html(sheet);
+	$("#generated").html(sheet);
 	$("#worksheet").show();
 }
